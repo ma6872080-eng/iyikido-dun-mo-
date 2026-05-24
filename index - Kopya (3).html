@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonsuza Dek Biz | Bizim Hikayemiz</title>
+    <style>
+        body, html { 
+            margin: 0; padding: 0; 
+            background-color: #fff5f5; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: #5a4444; 
+            scroll-behavior: smooth; 
+        }
+        /* Giriş Ekranı (Müzik Engelini Aşmak İçin) */
+        #intro-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #ffeded; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; z-index: 9999; text-align: center; 
+        }
+        .heart-btn { 
+            font-size: 80px; color: #e05263; cursor: pointer; 
+            animation: pulse 1.5s infinite; background: none; border: none; outline: none; 
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        
+        /* Ana İçerik */
+        #main-content { display: none; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .hero { text-align: center; padding: 40px 0; }
+        .hero h1 { color: #e05263; font-size: 2.3rem; margin-bottom: 10px; }
+        
+        /* Sayaç */
+        .timer-container { 
+            background: white; padding: 20px; border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(224,82,99,0.1); margin: 20px 0; text-align: center; 
+        }
+        .timer { display: flex; justify-content: center; gap: 10px; font-size: 1.1rem; font-weight: bold; margin-top: 15px; }
+        .timer-box { background: #ffebeb; padding: 10px; border-radius: 8px; min-width: 65px; color: #e05263; }
+        .timer-box span { font-size: 11px; display: block; color: #8a6d6d; margin-top: 3px; font-weight: normal; }
+        
+        /* Zaman Tüneli */
+        .timeline { margin: 40px 0; position: relative; border-left: 2px solid #e05263; padding-left: 20px; }
+        .timeline-item { margin-bottom: 35px; position: relative; }
+        .timeline-item::before { 
+            content: '❤'; position: absolute; left: -28px; top: 2px; 
+            background: #fff5f5; color: #e05263; font-size: 14px; 
+        }
+        .timeline-date { font-weight: bold; color: #e05263; margin-bottom: 5px; font-size: 0.95rem; }
+        .timeline-card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .timeline-card b { color: #613a3a; font-size: 1.1rem; }
+        .timeline-card p { margin: 8px 0 0 0; line-height: 1.5; color: #6b5555; }
+        .timeline-card img { width: 100%; border-radius: 8px; margin-top: 12px; display: block; object-fit: cover; max-height: 400px; }
+        
+        /* Mektup */
+        .letter { background: #fffaf0; border-left: 5px solid #e05263; padding: 20px; border-radius: 4px; font-style: italic; line-height: 1.7; margin: 40px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+    </style>
+</head>
+<body>
+
+    <!-- Giriş Ekranı -->
+    <div id="intro-overlay">
+        <button class="heart-btn" onclick="startSite()">❤</button>
+        <p style="color: #e05263; font-weight: bold; margin-top: 15px; font-size: 1.1rem;">Bizim Hikayemiz İçin Kalbe Dokun...</p>
+    </div>
+
+    <!-- Güncellenen Şarkı Alanı (Can Gox - Toprak Yağmura Altyapısı) -->
+    <audio id="bg-music" loop>
+        <source src="https://raw.githubusercontent.com/Anil-Y/ToprakYagmura/main/cangox.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Ana Sayfa -->
+    <div id="main-content">
+        <div class="hero">
+            <h1>iyi ki doğdun sevgilim</h1>
+            <p>miladım bu gün 18 yaşında ...</p>
+        </div>
+
+        <!-- Aşk Sayacı -->
+        <div class="timer-container">
+            <h3 style="margin:0; color: #613a3a;">İyi Ki Dedikten Beri Tam:</h3>
+            <div class="timer" id="love-timer">Yükleniyor...</div>
+        </div>
+
+        <!-- Anılar (Zaman Tüneli) -->
+        <div class="timeline">
+            
+            <!-- 1. Anı -->
+            <div class="timeline-item">
+                <div class="timeline-date">yanındayken dünyanın en mutlu insanı oluyorum</div>
+                <div class="timeline-card">
+                    <b>iyi ki sen. Herşey seninle güzel ✨</b>
+                    <p>seni çok seviyorum seviyorum canımın içi nice bizli yıllara</p>
+                    <img src="https://i.hizliresim.com/q364zed.jpg" alt="İlk Fotoğrafımız">
+                </div>
+            </div>
+
+            <!-- 2. Anı -->
+            <div class="timeline-item">
+                <div class="timeline-date">Güzel Bir Dönüm Noktası</div>
+                <div class="timeline-card">
+                    <b>İlk Kahvemiz ve Gülüşün ☕</b>
+                    <p>ARTIK EVLENELİM LÜTFEN.</p>
+                    <img src="https://i.hizliresim.com/4zx3g7y.jpg" alt="İkinci Fotoğrafımız">
+                </div>
+            </div>
+
+            <!-- 3. Anı -->
+            <div class="timeline-item">
+                <div class="timeline-date">En Değerli Anı</div>
+                <div class="timeline-card">
+                    <b>Seninle Her Saniye 🗺</b>
+                    <p>Birlikte güldüğümüz, dünyayı bir kenara bırakıp sadece birbirimize odaklandığımız her an benim için bir hazine.</p>
+                    <img src="https://i.hizliresim.com/eme4ho6.jpg" alt="Üçüncü Fotoğrafımız">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Özel Mektup -->
+        <div class="letter">
+            <h3 style="margin-top:0; color:#e05263;">Sana Küçük Bir Not...</h3>
+            "Toprak nasıl muhtaçsa yağmura, ben de senin o güzel yüzüne, sesine ve varlığına öyle muhtacım sevgilim. Bu site bizim küçük dijital yuvamız olsun. Gelecekte buraya ekleyeceğimiz daha yüzlerce anımız, yan yana geçireceğimiz upuzun yıllarımız olsun. Seni çok seviyorum!"İYİ Kİ DOĞDUN PRENSESİM İYİ Kİ VARSIN SONSUZA DEK BİZ.
+        </div>
+
+        <div style="text-align:center; padding: 30px 0; color:#e05263; font-weight: bold;">❤ Sonsuza Dek Biz ❤</div>
+    </div>
+
+    <script>
+        function startSite() {
+            document.getElementById('intro-overlay').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            
+            var music = document.getElementById('bg-music');
+            music.play().catch(function(error) { console.log("Müzik oynatılamadı: ", error); });
+            
+            setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            // Gerçek tarihiniz: 27 Ocak 2025
+            var startDate = new Date(2025, 0, 27, 0, 0, 0).getTime(); 
+            var now = new Date().getTime();
+            var diff = now - startDate;
+
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('love-timer').innerHTML = 
+                "<div class='timer-box'>" + days + "<span>Gün</span></div>" +
+                "<div class='timer-box'>" + hours + "<span>Saat</span></div>" +
+                "<div class='timer-box'>" + minutes + "<span>Dakika</span></div>" +
+                "<div class='timer-box'>" + seconds + "<span>Saniye</span></div>";
+        }
+    </script>
+</body>
+</html>
